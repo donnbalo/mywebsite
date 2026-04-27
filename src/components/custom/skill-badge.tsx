@@ -10,10 +10,9 @@ const categoryIcons: Record<string, React.ComponentType<{ className?: string }>>
 
 export function SkillBadge({ skill }: { skill: Skill }) {
   return (
-    <div className="group/badge flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm font-medium bg-secondary/50 text-foreground/80 border border-border/50 transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:border-primary/20 hover:shadow-[0_0_12px_oklch(0.72_0.19_150/10%)] cursor-default">
-      <span className="h-1.5 w-1.5 rounded-full bg-primary/40 group-hover/badge:bg-primary group-hover/badge:shadow-[0_0_6px_oklch(0.72_0.19_150/50%)] transition-all duration-300" />
+    <span className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground bg-secondary/40 border border-border/30 transition-colors duration-200 hover:text-foreground hover:border-border/50 cursor-default">
       {skill.name}
-    </div>
+    </span>
   );
 }
 
@@ -27,12 +26,12 @@ export function SkillCategory({
   const Icon = categoryIcons[category] || Code;
 
   return (
-    <div className="glass rounded-xl p-6 hover-glow space-y-4">
-      <div className="flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-          <Icon className="h-4.5 w-4.5" />
+    <div className="glass rounded-xl p-5 space-y-4">
+      <div className="flex items-center gap-2.5">
+        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary/8 text-primary/60">
+          <Icon className="h-4 w-4" />
         </div>
-        <h3 className="text-sm font-semibold text-primary/90 uppercase tracking-wider">
+        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
           {category}
         </h3>
       </div>

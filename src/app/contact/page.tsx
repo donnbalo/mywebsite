@@ -19,35 +19,30 @@ const contactMethods = [
     label: "Email",
     value: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
-    description: "Best way to reach me",
   },
   {
     icon: LinkedinIcon,
     label: "LinkedIn",
     value: "Donn Ian Baloloy",
     href: "https://www.linkedin.com/in/donn-ian-baloloy-0439b43a3",
-    description: "Professional network",
   },
   {
     icon: GithubIcon,
     label: "GitHub",
     value: "donnbalo",
     href: "https://github.com/donnbalo",
-    description: "Open source & code",
   },
   {
     icon: FacebookIcon,
     label: "Facebook",
     value: "donn.balo",
     href: "https://www.facebook.com/donn.balo/",
-    description: "Social",
   },
   {
     icon: InstagramIcon,
     label: "Instagram",
     value: "donn.balo",
     href: "https://www.instagram.com/donn.balo",
-    description: "Social",
   },
 ];
 
@@ -58,12 +53,12 @@ export default function ContactPage() {
       <section className="px-6 pt-20 pb-8">
         <div className="mx-auto max-w-4xl text-center">
           <FadeInOnScroll>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Get in <span className="text-gradient-animated">Touch</span>
+            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
+              Get in Touch
             </h1>
           </FadeInOnScroll>
           <FadeInOnScroll delay={100}>
-            <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
+            <p className="mt-3 text-base text-muted-foreground/70 max-w-md mx-auto">
               Have a question, project idea, or just want to connect?
               I&apos;d love to hear from you.
             </p>
@@ -73,20 +68,19 @@ export default function ContactPage() {
 
       {/* Quick CTA */}
       <section className="px-6 py-8">
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-md">
           <FadeInOnScroll delay={150}>
-            <div className="glass rounded-2xl p-8 text-center glow-green hover-glow">
+            <div className="glass rounded-2xl p-8 text-center">
               <div className="mb-4 flex justify-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary animate-glow-pulse">
-                  <Send className="h-7 w-7" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/8 text-primary/60">
+                  <Send className="h-6 w-6" />
                 </div>
               </div>
-              <h2 className="text-xl font-semibold mb-2">
+              <h2 className="text-lg font-semibold mb-2 text-foreground">
                 Preferred: Email
               </h2>
-              <p className="text-sm text-muted-foreground mb-5">
-                The fastest way to reach me is via email. I typically
-                respond within 24 hours.
+              <p className="text-sm text-muted-foreground/70 mb-5">
+                The fastest way to reach me. I typically respond within 24 hours.
               </p>
               <a
                 href={`mailto:${siteConfig.email}`}
@@ -104,33 +98,30 @@ export default function ContactPage() {
       </section>
 
       {/* All Contact Methods */}
-      <section className="px-6 py-12">
-        <div className="mx-auto max-w-3xl">
+      <section className="px-6 py-10">
+        <div className="mx-auto max-w-md">
           <FadeInOnScroll>
-            <SectionHeading
-              title="All Channels"
-              subtitle="Find me across these platforms"
-            />
+            <SectionHeading title="All Channels" />
           </FadeInOnScroll>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-3">
             {contactMethods.map((method, i) => (
-              <FadeInOnScroll key={method.label} delay={i * 80}>
+              <FadeInOnScroll key={method.label} delay={i * 60}>
                 <a
                   href={method.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   id={`contact-${method.label.toLowerCase()}`}
-                  className="group flex items-center gap-4 rounded-xl glass p-5 hover-glow gradient-border transition-all"
+                  className="group flex items-center gap-4 rounded-xl glass p-4 transition-all duration-300 hover:border-primary/15"
                 >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_12px_oklch(0.72_0.19_150/20%)]">
-                    <method.icon className="h-5 w-5" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/8 text-primary/60 transition-colors duration-200 group-hover:text-primary">
+                    <method.icon className="h-4.5 w-4.5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                    <p className="text-sm font-medium text-foreground/90 group-hover:text-foreground transition-colors">
                       {method.label}
                     </p>
-                    <p className="text-xs text-muted-foreground truncate">
+                    <p className="text-xs text-muted-foreground/60 truncate">
                       {method.value}
                     </p>
                   </div>
@@ -142,17 +133,12 @@ export default function ContactPage() {
       </section>
 
       {/* Location */}
-      <section className="px-6 py-12">
+      <section className="px-6 py-10">
         <div className="mx-auto max-w-md text-center">
           <FadeInOnScroll>
-            <div className="flex flex-col items-center gap-2 text-muted-foreground">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/5 text-primary/60">
-                <MapPin className="h-5 w-5" />
-              </div>
-              <p className="text-sm mt-1">Based in the Philippines</p>
-              <p className="text-xs text-muted-foreground/60">
-                Open to remote collaboration worldwide
-              </p>
+            <div className="flex flex-col items-center gap-2 text-muted-foreground/60">
+              <MapPin className="h-4 w-4" />
+              <p className="text-xs">Based in the Philippines · Open to remote collaboration</p>
             </div>
           </FadeInOnScroll>
         </div>

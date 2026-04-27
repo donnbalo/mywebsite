@@ -9,24 +9,18 @@ export function SectionHeading({
 }) {
   return (
     <div
-      className={`mb-14 ${
+      className={`mb-12 ${
         align === "center" ? "text-center" : "text-left"
       }`}
     >
-      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-        <span className="text-gradient-animated">{title}</span>
+      <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-foreground">
+        {title}
       </h2>
       {subtitle && (
-        <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
+        <p className="mt-2 text-sm text-muted-foreground/70 max-w-lg mx-auto">
           {subtitle}
         </p>
       )}
-      <div
-        className={`mt-5 gradient-line max-w-[80px] rounded-full ${
-          align === "center" ? "mx-auto" : ""
-        }`}
-        style={{ height: "2px" }}
-      />
     </div>
   );
 }
