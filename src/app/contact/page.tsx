@@ -59,7 +59,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-4xl text-center">
           <FadeInOnScroll>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Get in <span className="text-gradient">Touch</span>
+              Get in <span className="text-gradient-animated">Touch</span>
             </h1>
           </FadeInOnScroll>
           <FadeInOnScroll delay={100}>
@@ -75,9 +75,9 @@ export default function ContactPage() {
       <section className="px-6 py-8">
         <div className="mx-auto max-w-2xl">
           <FadeInOnScroll delay={150}>
-            <div className="glass rounded-2xl p-8 text-center glow-green">
+            <div className="glass rounded-2xl p-8 text-center glow-green hover-glow">
               <div className="mb-4 flex justify-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary animate-glow-pulse">
                   <Send className="h-7 w-7" />
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default function ContactPage() {
                 href={`mailto:${siteConfig.email}`}
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "gap-2 rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90"
+                  "gap-2 rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90 shimmer-btn"
                 )}
               >
                 <Mail className="h-4 w-4" />
@@ -121,13 +121,13 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   id={`contact-${method.label.toLowerCase()}`}
-                  className="group flex items-center gap-4 rounded-xl glass p-5 hover-glow transition-all"
+                  className="group flex items-center gap-4 rounded-xl glass p-5 hover-glow gradient-border transition-all"
                 >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_12px_oklch(0.72_0.19_150/20%)]">
                     <method.icon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                       {method.label}
                     </p>
                     <p className="text-xs text-muted-foreground truncate">
@@ -146,8 +146,10 @@ export default function ContactPage() {
         <div className="mx-auto max-w-md text-center">
           <FadeInOnScroll>
             <div className="flex flex-col items-center gap-2 text-muted-foreground">
-              <MapPin className="h-5 w-5 text-primary/60" />
-              <p className="text-sm">Based in the Philippines</p>
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/5 text-primary/60">
+                <MapPin className="h-5 w-5" />
+              </div>
+              <p className="text-sm mt-1">Based in the Philippines</p>
               <p className="text-xs text-muted-foreground/60">
                 Open to remote collaboration worldwide
               </p>

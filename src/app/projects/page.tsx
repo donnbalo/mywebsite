@@ -21,7 +21,7 @@ export default function ProjectsPage() {
         <div className="mx-auto max-w-6xl text-center">
           <FadeInOnScroll>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              My <span className="text-gradient">Projects</span>
+              My <span className="text-gradient-animated">Projects</span>
             </h1>
           </FadeInOnScroll>
           <FadeInOnScroll delay={100}>
@@ -47,7 +47,7 @@ export default function ProjectsPage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((project, i) => (
               <FadeInOnScroll key={project.id} delay={i * 100}>
-                <ProjectCard project={project} />
+                <ProjectCard project={project} index={i} />
               </FadeInOnScroll>
             ))}
           </div>
@@ -68,7 +68,7 @@ export default function ProjectsPage() {
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {other.map((project, i) => (
                 <FadeInOnScroll key={project.id} delay={i * 100}>
-                  <ProjectCard project={project} />
+                  <ProjectCard project={project} index={featured.length + i} />
                 </FadeInOnScroll>
               ))}
             </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Briefcase, GraduationCap, Cpu, Brain } from "lucide-react";
+import { Cpu, Brain } from "lucide-react";
 import { FadeInOnScroll } from "@/components/custom/animated-background";
 import { SectionHeading } from "@/components/custom/section-heading";
 import { SkillCategory } from "@/components/custom/skill-badge";
@@ -23,7 +23,7 @@ export default function AboutPage() {
           <FadeInOnScroll>
             <div className="mb-8 flex justify-center">
               <div className="relative">
-                <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-primary/30 to-transparent blur-lg" />
+                <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-primary/25 to-transparent blur-xl animate-glow-pulse" />
                 <Image
                   src="/images/avatar.png"
                   alt="Donn Baloloy"
@@ -38,7 +38,7 @@ export default function AboutPage() {
 
           <FadeInOnScroll delay={100}>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              About <span className="text-gradient">Me</span>
+              About <span className="text-gradient-animated">Me</span>
             </h1>
           </FadeInOnScroll>
 
@@ -52,7 +52,7 @@ export default function AboutPage() {
       <section className="px-6 py-12">
         <div className="mx-auto max-w-3xl">
           <FadeInOnScroll>
-            <div className="glass rounded-2xl p-8 sm:p-10">
+            <div className="glass rounded-2xl p-8 sm:p-10 hover-glow">
               <p className="text-base leading-relaxed text-foreground/90">
                 {siteConfig.shortBio}
               </p>
@@ -73,7 +73,7 @@ export default function AboutPage() {
 
           <div className="grid gap-6 sm:grid-cols-2">
             <FadeInOnScroll delay={100}>
-              <div className="glass rounded-2xl p-6 hover-glow h-full">
+              <div className="glass rounded-2xl p-6 hover-glow gradient-border h-full">
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Cpu className="h-6 w-6" />
                 </div>
@@ -90,7 +90,7 @@ export default function AboutPage() {
             </FadeInOnScroll>
 
             <FadeInOnScroll delay={200}>
-              <div className="glass rounded-2xl p-6 hover-glow h-full">
+              <div className="glass rounded-2xl p-6 hover-glow gradient-border h-full">
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Brain className="h-6 w-6" />
                 </div>
@@ -128,10 +128,10 @@ export default function AboutPage() {
                 <div className="relative flex gap-6 pl-12">
                   {/* Timeline dot */}
                   <div className="absolute left-0 top-1 flex h-10 w-10 items-center justify-center">
-                    <div className="h-3 w-3 rounded-full border-2 border-primary bg-background" />
+                    <div className="h-3 w-3 rounded-full border-2 border-primary bg-background shadow-[0_0_8px_oklch(0.72_0.19_150/30%)]" />
                   </div>
 
-                  <div className="glass rounded-xl p-5 flex-1">
+                  <div className="glass rounded-xl p-5 flex-1 hover-glow">
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between mb-2">
                       <h3 className="text-base font-semibold text-foreground">
                         {exp.role}
@@ -164,15 +164,13 @@ export default function AboutPage() {
             />
           </FadeInOnScroll>
 
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
             {skillCategories.map((category, i) => (
               <FadeInOnScroll key={category} delay={i * 100}>
-                <div className="glass rounded-xl p-6">
-                  <SkillCategory
-                    category={category}
-                    skills={skills.filter((s) => s.category === category)}
-                  />
-                </div>
+                <SkillCategory
+                  category={category}
+                  skills={skills.filter((s) => s.category === category)}
+                />
               </FadeInOnScroll>
             ))}
           </div>

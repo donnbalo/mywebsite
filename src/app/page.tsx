@@ -6,6 +6,7 @@ import { FadeInOnScroll } from "@/components/custom/animated-background";
 import { SectionHeading } from "@/components/custom/section-heading";
 import { ProjectCard } from "@/components/custom/project-card";
 import { SkillCategory } from "@/components/custom/skill-badge";
+import { Typewriter } from "@/components/custom/typewriter";
 import { siteConfig, projects, skills } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -21,11 +22,19 @@ export default function Home() {
         className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center px-6"
       >
         <div className="mx-auto max-w-4xl text-center">
-          {/* Avatar */}
+          {/* Avatar with circuit ring */}
           <FadeInOnScroll>
             <div className="mb-8 flex justify-center">
               <div className="relative">
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary/40 to-primary/10 blur-md" />
+                {/* Outer glow ring */}
+                <div className="absolute -inset-3 rounded-full bg-gradient-to-br from-primary/30 via-primary/5 to-primary/20 blur-lg animate-glow-pulse" />
+                {/* Spinning ring decoration */}
+                <div
+                  className="absolute -inset-2 rounded-full animate-spin-slow"
+                  style={{
+                    background: "conic-gradient(from 0deg, transparent 0%, oklch(0.72 0.19 150 / 20%) 25%, transparent 50%, oklch(0.72 0.19 150 / 15%) 75%, transparent 100%)",
+                  }}
+                />
                 <Image
                   src="/images/avatar.png"
                   alt="Donn Baloloy"
@@ -40,8 +49,8 @@ export default function Home() {
 
           {/* Status Badge */}
           <FadeInOnScroll delay={100}>
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_6px_oklch(0.72_0.19_150/50%)]" />
               Available for collaboration
             </div>
           </FadeInOnScroll>
@@ -50,13 +59,13 @@ export default function Home() {
           <FadeInOnScroll delay={200}>
             <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               Hi, I&apos;m{" "}
-              <span className="text-gradient">{siteConfig.name}</span>
+              <span className="text-gradient-animated">{siteConfig.name}</span>
             </h1>
           </FadeInOnScroll>
 
           <FadeInOnScroll delay={300}>
-            <p className="mt-4 text-xl text-muted-foreground sm:text-2xl font-light">
-              {siteConfig.role}
+            <p className="mt-4 text-xl text-muted-foreground sm:text-2xl font-light h-[1.5em]">
+              <Typewriter />
             </p>
           </FadeInOnScroll>
 
@@ -75,7 +84,7 @@ export default function Home() {
                 href="/projects"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "gap-2 rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90 glow-green"
+                  "gap-2 rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90 glow-green shimmer-btn"
                 )}
               >
                 View Projects
@@ -85,7 +94,7 @@ export default function Home() {
                 href="/contact"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "gap-2 rounded-full px-8 border-primary/20 hover:bg-primary/10 hover:text-primary"
+                  "gap-2 rounded-full px-8 border-primary/20 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300"
                 )}
               >
                 <Mail className="h-4 w-4" />
@@ -120,11 +129,11 @@ export default function Home() {
           </FadeInOnScroll>
 
           <FadeInOnScroll delay={100}>
-            <div className="glass rounded-2xl p-8 sm:p-10">
+            <div className="glass rounded-2xl p-8 sm:p-10 hover-glow">
               <div className="flex flex-col gap-8 sm:flex-row sm:items-start">
                 <div className="shrink-0 self-center sm:self-start">
                   <div className="relative">
-                    <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-primary/30 to-transparent blur-sm" />
+                    <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent blur-md" />
                     <Image
                       src="/images/avatar.png"
                       alt="Donn Baloloy"
@@ -138,19 +147,21 @@ export default function Home() {
                   <p className="text-base leading-relaxed text-foreground/90">
                     {siteConfig.shortBio}
                   </p>
-                  <div className="flex flex-wrap gap-6 pt-2">
-                    <div>
-                      <p className="text-2xl font-bold text-gradient">IC</p>
-                      <p className="text-xs text-muted-foreground">Validation</p>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold text-gradient">AI</p>
-                      <p className="text-xs text-muted-foreground">Engineering</p>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold text-gradient">QA</p>
-                      <p className="text-xs text-muted-foreground">Optimization</p>
-                    </div>
+                  <div className="flex flex-wrap gap-8 pt-3">
+                    {[
+                      { label: "Validation", value: "IC" },
+                      { label: "Engineering", value: "AI" },
+                      { label: "Optimization", value: "QA" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="group/stat cursor-default">
+                        <p className="text-2xl font-bold text-gradient group-hover/stat:text-gradient-animated transition-all">
+                          {stat.value}
+                        </p>
+                        <p className="text-xs text-muted-foreground group-hover/stat:text-primary/60 transition-colors">
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -172,18 +183,18 @@ export default function Home() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProjects.map((project, i) => (
               <FadeInOnScroll key={project.id} delay={i * 100}>
-                <ProjectCard project={project} />
+                <ProjectCard project={project} index={i} />
               </FadeInOnScroll>
             ))}
           </div>
 
           <FadeInOnScroll delay={400}>
-            <div className="mt-10 flex justify-center">
+            <div className="mt-12 flex justify-center">
               <Link
                 href="/projects"
                 className={cn(
                   buttonVariants({ variant: "outline" }),
-                  "gap-2 rounded-full border-primary/20 hover:bg-primary/10 hover:text-primary"
+                  "gap-2 rounded-full border-primary/20 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300 shimmer-btn"
                 )}
               >
                 View All Projects
@@ -204,7 +215,7 @@ export default function Home() {
             />
           </FadeInOnScroll>
 
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
             {skillCategories.map((category, i) => (
               <FadeInOnScroll key={category} delay={i * 100}>
                 <SkillCategory
@@ -221,9 +232,9 @@ export default function Home() {
       <section id="contact-cta" className="px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
           <FadeInOnScroll>
-            <div className="glass rounded-2xl p-10 glow-green">
+            <div className="glass rounded-2xl p-10 glow-green hover-glow">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                <span className="text-gradient">Let&apos;s Connect</span>
+                <span className="text-gradient-animated">Let&apos;s Connect</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
                 Whether you have a project idea, collaboration opportunity, or
@@ -234,7 +245,7 @@ export default function Home() {
                   href={`mailto:${siteConfig.email}`}
                   className={cn(
                     buttonVariants({ size: "lg" }),
-                    "gap-2 rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90"
+                    "gap-2 rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90 shimmer-btn"
                   )}
                 >
                   <Mail className="h-4 w-4" />
@@ -244,7 +255,7 @@ export default function Home() {
                   href="/contact"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
-                    "gap-2 rounded-full px-8 border-primary/20 hover:bg-primary/10 hover:text-primary"
+                    "gap-2 rounded-full px-8 border-primary/20 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300"
                   )}
                 >
                   All Contact Options
